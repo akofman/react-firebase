@@ -1,6 +1,7 @@
-export const createMockSnapshot = (val, ...otherProps) => ({
+export const createMockSnapshot = (value, valueExists = true, ...otherProps) => ({
   ...otherProps,
-  val: () => val,
+  exists: () => valueExists,
+  val: () => value,
 })
 
 const defaultDatabaseProps = {

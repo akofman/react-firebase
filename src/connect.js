@@ -90,11 +90,10 @@ export default (mapFirebaseToProps = defaultMapFirebaseToProps) => {
           const subscriptionRef = applyMethods(this.ref(path), query)
           const update = snapshot => {
             if (this.mounted) {
-              const value = snapshot.val()
               this.setState(prevState => ({
                 subscriptionsState: {
                   ...prevState.subscriptionsState,
-                  [key]: value === null ? undefined : value,
+                  [key]: snapshot.exists() ? snapshot.val() : undefined,
                 },
               }))
             }
