@@ -197,3 +197,21 @@ test('Should update subscriptions when props change', assert => {
 
   assert.end()
 })
+
+test('Should pass undefined instead of null for subscriptions to paths that do not exist', assert => {
+  const mockDatabase = {
+    ref: () => ({
+      on: (event, callback) => (
+        callback(createMockSnapshot(null, false))
+      ),
+    }),
+  }
+
+  const mapFirebaseToProps = () => ({ foo: 'foo' })
+  const firebaseApp = createMockApp(mockDatabase)
+  const { state, props } = renderStub(mapFirebaseToProps, firebaseApp)
+
+  assert.equal(state.foo, undefined)
+  assert.equal(props.foo, undefined)
+  assert.end()
+})
