@@ -49,7 +49,7 @@ It does not modify the component class passed to it. Instead, it *returns* a new
 * [`mapFirebaseToProps(props, ref, firebaseApp): subscriptions`] \(*Object or Function*): Its result, or the argument itself must be a plain object. Each value must either be a path to a location in your database, a query object or a function. If you omit it, the default implementation just passes `firebaseApp` as a prop to your component.
 
 
-* [`mergeProps(actionProps, subscriptionProps, ownProps): props`] \(*Function*): If specified, it is passed action functions and the current subscription state from the result of `mapFirebaseToProps()`, and the parent `props`. The plain object you return from it will be passed as props to the wrapped component. If you omit it, `Object.assign({}, ownProps, actionProps, subscriptionProps)` is used by default.
+* [`mergeProps(ownProps, subscriptionProps, actionProps): props`] \(*Function*): If specified, it is passed the parent `props`, the current subscription state and action functions from the result of `mapFirebaseToProps()`. The plain object you return from it will be passed as props to the wrapped component. If you omit it, `Object.assign({}, ownProps, actionProps, subscriptionProps)` is used by default.
 
   >Note: The `actionProps` argument is an object containing any function values returned by `mapFirebaseToProps()` which are typically used to modify data in Firebase.
 
