@@ -93,7 +93,7 @@ export default (mapFirebaseToProps = defaultMapFirebaseToProps) => {
               this.setState(prevState => ({
                 subscriptionsState: {
                   ...prevState.subscriptionsState,
-                  [key]: snapshot.val(),
+                  [key]: snapshot.exists() ? snapshot.val() : null,
                 },
               }))
             }
