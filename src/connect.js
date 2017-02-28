@@ -100,7 +100,7 @@ export default (mapFirebaseToProps = defaultMapFirebaseToProps, mergeProps = def
           }
         })
 
-        this.listeners = nextListeners
+        this.listeners = { ...this.listeners, ...nextListeners }
       }
 
       unsubscribe(subscriptions) {
